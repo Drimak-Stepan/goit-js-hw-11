@@ -4,7 +4,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import FetchSearchImages from './JS/fetch';
 import smoothScroll from './JS/scroll';
-import renderMarkup from './JS/render';
+import { getItemTemplate } from './JS/getItemTemplate';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
@@ -19,15 +19,18 @@ let gallery = new SimpleLightbox('.gallery a', {
 
 const api = new FetchSearchImages();
 
+refs.searchForm.addEventListener('submit', onSearch);
+refs.loadMore.addEventListener('click', onLoadMore);
+
 async function onSearch(e) {
   e.preventDefault();
   api.query = e.target.elements.searchQuery.value;
   api.resetPage();
   try {
     await api.getImages().then(({ hits, totalHits }) => {
-      console.log(totalHits);
       refs.gallery.innerHTML = '';
       if (hits.length === 0) {
+        refs.loadMore.classList.remove('visible');
         return Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.',
           { clickToClose: true }
@@ -48,9 +51,9 @@ async function onSearch(e) {
 async function onLoadMore() {
   try {
     await api.getImages().then(({ hits, totalHits }) => {
-      console.log(hits);
       if (api.addPages > totalHits) {
         gallery.refresh();
+        refs.loadMore.classList.remove('visible');
         return Notify.warning(
           "We're sorry, but you've reached the end of search results."
         );
@@ -64,5 +67,7 @@ async function onLoadMore() {
   }
 }
 
-refs.searchForm.addEventListener('submit', onSearch);
-refs.loadMore.addEventListener('click', onLoadMore);
+function renderMarkup(hits) {
+  const markup = hits.map(getItemTemplate).join('');
+  refs.gallery.insertAdjacentHTML('beforeend', markup);
+}
