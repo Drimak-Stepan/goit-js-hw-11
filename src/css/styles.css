@@ -10,6 +10,7 @@ body {
   background-color: #fafafa;
   color: #212121;
   line-height: 1.5;
+  padding-bottom: 20px;
 }
 
 img {
@@ -26,7 +27,7 @@ img {
   top: 0;
   left: 0;
   display: flex;
-  padding: 20px;
+  padding: 10px;
   background-color: cornflowerblue;
 }
 
@@ -34,12 +35,27 @@ img {
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  font-size: 18px;
+  font-size: 14px;
+  color: black;
+}
+.search-form button {
+  color: cornflowerblue;
+}
+
+.search-form input,
+.search-form button {
+  width: max-content;
+  cursor: pointer;
+  font: inherit;
+  background-color: #fff;
+  border-color: gold;
+  border-radius: 4px;
+  padding: 0px 10px;
 }
 
 .container {
   padding-top: 60px;
-  padding-bottom: 60px;
+  margin-bottom: 30px;
   max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
@@ -48,14 +64,13 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 20px;
 }
 
 .photo-card {
   border-radius: 20%;
   width: calc((100% - 30px) / 4);
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .info {
@@ -68,6 +83,7 @@ img {
 }
 
 .info-item {
+  color: cornflowerblue;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -80,11 +96,19 @@ img {
 .load-more {
   opacity: 0;
   display: flex;
-  position: fixed;
-  bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
-  transition: opacity 0.3s ease-in;
+  position: relative;
+  width: max-content;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 20px;
+  background-color: cornflowerblue;
+  border: 0;
+  border-radius: 4px;
+  outline: 0;
+  padding: 8px 20px;
 }
 
 .load-more.visible {
