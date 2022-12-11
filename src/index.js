@@ -51,7 +51,8 @@ async function onSearch(e) {
 async function onLoadMore() {
   try {
     await api.getImages().then(({ hits, totalHits }) => {
-      if (api.addPages > totalHits) {
+      if (refs.gallery.children.length >= totalHits) {
+        // console.log(refs.gallery.children.length);
         gallery.refresh();
         refs.loadMore.classList.remove('visible');
         return Notify.warning(

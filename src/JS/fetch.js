@@ -7,12 +7,11 @@ export default class FetchSearchImages {
     this.searchQuery = '';
     this.page = 1;
     this.perPage = 40;
-    this.addPages = 0;
   }
   async getImages() {
     const promise = await axios
       .get(
-        `${this.URL}?key=${this.API_KEY}&q=${this.searchQuery}&image_type=photo&safesearch=true&orientation=horizontal&page=${this.page}&per_ page=${this.perPage}`
+        `${this.URL}?key=${this.API_KEY}&q=${this.searchQuery}&image_type=photo&safesearch=true&orientation=horizontal&page=${this.page}&per_page=${this.perPage}`
       )
       .then(({ data }) => data);
 
@@ -23,7 +22,6 @@ export default class FetchSearchImages {
 
   incrementPage() {
     this.page += 1;
-    this.addPages += this.perPage;
   }
 
   resetPage() {
