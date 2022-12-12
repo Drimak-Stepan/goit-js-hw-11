@@ -16,7 +16,7 @@ body {
 img {
   display: block;
   max-width: 100%;
-  height: auto;
+  height: 220px;
   flex-grow: 2;
 }
 
@@ -63,7 +63,7 @@ img {
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 20px;
 }
 
 @media screen and (min-width: 768px) {
