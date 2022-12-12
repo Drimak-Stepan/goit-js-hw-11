@@ -63,9 +63,12 @@ img {
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 10px;
 }
 
+.photo-card {
+  width: calc((100% - 30px) / 1);
+}
 @media screen and (min-width: 768px) {
   .photo-card {
     width: calc((100% - 30px) / 2);
